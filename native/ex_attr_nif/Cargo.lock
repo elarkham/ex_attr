@@ -31,6 +31,7 @@ dependencies = [
 name = "ex_attr_nif"
 version = "0.1.0"
 dependencies = [
+ "rustix",
  "rustler",
  "xattr",
 ]
