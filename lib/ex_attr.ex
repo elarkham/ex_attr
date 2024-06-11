@@ -168,7 +168,11 @@ defmodule ExAttr do
   """
   @spec set(Path.t(), name(), value()) :: result()
   def set(path, name, nil) do
-    remove(path, name)
+    case remove(path, name) do
+      :ok -> :ok
+      {:error, "No data available (os error 61)"} -> :ok
+      {:error, reason} -> {:error, reason}
+    end
   end
   def set(path, name, value) do
     Nif.set_xattr(path, name, to_string(value))
