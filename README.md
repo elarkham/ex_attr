@@ -26,7 +26,7 @@ The package can be installed by adding `ex_attr` to your list of dependencies in
 ```elixir
 def deps do
   [
-    {:ex_attr, "~> 1.0.1"}
+    {:ex_attr, "~> 2.0.0"}
   ]
 end
 ```
