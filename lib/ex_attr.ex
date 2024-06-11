@@ -398,9 +398,7 @@ defmodule ExAttr do
   @spec dump!(Path.t()) :: %{name() => value()}
   def dump!(path) do
     case dump(path) do
-      {:ok, map} ->
-        {:ok, map}
-
+      {:ok, map} -> map
       {:error, reason} ->
         raise Error,
           action: "dump xattr for",
