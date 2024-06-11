@@ -11,7 +11,11 @@ defmodule ExAttr.MixProject do
       description: description(),
       package: package(),
       name: "ExAttr",
-      source_url: "https://github.com/elarkham/ex_attr"
+      source_url: "https://github.com/elarkham/ex_attr",
+      docs: [
+        main: "ExAttr",
+        extras: ["README.md"]
+      ]
     ]
   end
 
@@ -25,7 +29,8 @@ defmodule ExAttr.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:rustler, "~> 0.33.0", runtime: false}
+      {:rustler, "~> 0.33.0", runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
     ]
   end
 
@@ -37,8 +42,7 @@ defmodule ExAttr.MixProject do
     [
       name: "ex_attr",
 
-      files: ~w(lib priv native .formatter.exs mix.exs README* readme* LICENSE*
-                license* CHANGELOG* changelog* src),
+      files: ~w(lib priv native .formatter.exs mix.exs README* LICENSE*),
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => "https://github.com/elarkham/ex_attr"}
     ]

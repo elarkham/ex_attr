@@ -112,13 +112,14 @@ defmodule ExAttr do
   Get an extended attribute for the specified file.
 
   ## Examples
-
-    iex> ExAttr.get("test.txt", "user.foo")
-    {:ok, nil}
-    iex> ExAttr.set("test.txt", "user.foo", "123")
-    :ok
-    iex> ExAttr.get("test.txt", "user.foo")
-    {:ok, "123"}
+  ```elixir
+  iex> ExAttr.get("test.txt", "user.foo")
+  {:ok, nil}
+  iex> ExAttr.set("test.txt", "user.foo", "123")
+  :ok
+  iex> ExAttr.get("test.txt", "user.foo")
+  {:ok, "123"}
+  ```
   """
   @spec get(Path.t(), name()) :: result(value())
   def get(path, name) do
@@ -154,12 +155,16 @@ defmodule ExAttr do
   Set an extended attribute on the specified file. Passing a `nil` value will remove the attribute.
 
   ## Examples
-
-    iex> :ok = ExAttr.set("test.txt", "user.foo", "123")
-    iex> {:ok, "123"} = ExAttr.get("test.txt", "user.foo")
-    iex> :ok = ExAttr.set("test.txt", "user.foo", nil)
-    iex> ExAttr.get("test.txt", "user.foo")
-    {:ok, nil}
+  ```elixir
+  iex> ExAttr.set("test.txt", "user.foo", "123")
+  :ok
+  iex> ExAttr.get("test.txt", "user.foo")
+  {:ok, "123"}
+  iex> ExAttr.set("test.txt", "user.foo", nil)
+  :ok
+  iex> ExAttr.get("test.txt", "user.foo")
+  {:ok, nil}
+  ```
   """
   @spec set(Path.t(), name(), value()) :: result()
   def set(path, name, nil) do
@@ -189,13 +194,18 @@ defmodule ExAttr do
   Remove an extended attribute from the specified file.
 
   ## Examples
-
-    iex> :ok = ExAttr.set("test.txt", "user.foo", "123")
-    iex> {:ok, "123"} = ExAttr.get("test.txt", "user.foo")
-    iex> :ok = ExAttr.remove("test.txt", "user.foo")
-    iex> {:ok, nil} = ExAttr.get("test.txt", "user.foo")
-    iex> ExAttr.remove("test.txt", "user.foo")
-    {:error, "No data available (os error 61)"}
+  ```elixir
+  iex> ExAttr.set("test.txt", "user.foo", "123")
+  :ok
+  iex> ExAttr.get("test.txt", "user.foo")
+  {:ok, "123"}
+  iex> ExAttr.remove("test.txt", "user.foo")
+  :ok
+  iex> ExAttr.get("test.txt", "user.foo")
+  {:ok, nil}
+  iex> ExAttr.remove("test.txt", "user.foo")
+  {:error, "No data available (os error 61)"}
+  ```
   """
   @spec remove(Path.t(), name()) :: result()
   def remove(path, name) do
@@ -221,15 +231,17 @@ defmodule ExAttr do
   @doc """
   List extended attributes attached to the specified file.
 
-  Note: this may not list all attributes. Speficially, it definitely won’t list any trusted attributes unless you are root and it may not list system attributes.
+  > #### Note {: .info}
+  > This may not list all attributes. Speficially, it definitely won’t list any trusted attributes unless you are root and it may not list system attributes.
 
   ## Examples
-
-    iex> :ok = ExAttr.set("test.txt", "user.foo", "bar")
-    iex> :ok = ExAttr.set("test.txt", "user.bar", "foo")
-    iex> :ok = ExAttr.set("test.txt", "user.test", "example")
-    iex> ExAttr.list("test.txt")
-    {:ok, ["user.test", "user.bar", "user.foo"]}
+  ```elixir
+  iex> :ok = ExAttr.set("test.txt", "user.foo", "bar")
+  iex> :ok = ExAttr.set("test.txt", "user.bar", "foo")
+  iex> :ok = ExAttr.set("test.txt", "user.test", "example")
+  iex> ExAttr.list("test.txt")
+  {:ok, ["user.test", "user.bar", "user.foo"]}
+  ```
   """
   @spec list(Path.t()) :: result(list(name()))
   def list(path) do
@@ -242,7 +254,8 @@ defmodule ExAttr do
   @doc """
   List extended attributes attached to the specified file, raises on error.
 
-  Note: this may not list all attributes. Speficially, it definitely won’t list any trusted attributes unless you are root and it may not list system attributes.
+  > #### Note {: .info}
+  > This may not list all attributes. Speficially, it definitely won’t list any trusted attributes unless you are root and it may not list system attributes.
   """
   @spec list!(Path.t()) :: list(name())
   def list!(path) do
@@ -260,15 +273,18 @@ defmodule ExAttr do
   @doc """
   Dumps map of extended attributes for the specified file.
 
-  Note: this may not list all attributes. Speficially, it definitely won’t list any trusted attributes unless you are root and it may not list system attributes.
+  > #### Note {: .info}
+  > This may not list all attributes. Speficially, it definitely won’t list any trusted attributes unless you are root and it may not list system attributes.
 
   ## Examples
 
-    iex> :ok = ExAttr.set("test.txt", "user.foo", "bar")
-    iex> :ok = ExAttr.set("test.txt", "user.bar", "foo")
-    iex> :ok = ExAttr.set("test.txt", "user.test", "example")
-    iex> ExAttr.dump("test.txt")
-    {:ok, %{"user.bar" => "foo", "user.foo" => "bar", "user.test" => "example"}}
+  ```elixir
+  iex> :ok = ExAttr.set("test.txt", "user.foo", "bar")
+  iex> :ok = ExAttr.set("test.txt", "user.bar", "foo")
+  iex> :ok = ExAttr.set("test.txt", "user.test", "example")
+  iex> ExAttr.dump("test.txt")
+  {:ok, %{"user.bar" => "foo", "user.foo" => "bar", "user.test" => "example"}}
+  ```
   """
   @spec dump(Path.t()) :: result(%{name() => value()})
   def dump(path) do
@@ -287,7 +303,8 @@ defmodule ExAttr do
   @doc """
   Dumps map of extended attributes for the specified file, raises on error.
 
-  Note: this may not list all attributes. Speficially, it definitely won’t list any trusted attributes unless you are root and it may not list system attributes.
+  > #### Note {: .info}
+  > This may not list all attributes. Speficially, it definitely won’t list any trusted attributes unless you are root and it may not list system attributes.
   """
   @spec dump!(Path.t()) :: %{name() => value()}
   def dump!(path) do
