@@ -4,7 +4,7 @@ defmodule ExAttr.MixProject do
   def project do
     [
       app: :ex_attr,
-      version: "1.0.0",
+      version: "1.0.1",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -42,7 +42,7 @@ defmodule ExAttr.MixProject do
     [
       name: "ex_attr",
 
-      files: ~w(lib priv native .formatter.exs mix.exs README* LICENSE*),
+      files: ~w(lib priv native .formatter.exs mix.exs CHANGELOG* README* LICENSE*),
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => "https://github.com/elarkham/ex_attr"}
     ]
