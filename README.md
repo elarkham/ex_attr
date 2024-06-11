@@ -1,4 +1,6 @@
 # ExAttr
+ [![Hex.pm](https://img.shields.io/hexpm/v/ecto.svg)](https://hex.pm/packages/ex_attr) [![Documentation](https://img.shields.io/badge/documentation-gray)](https://hexdocs.pm/ex_attr)
+
 Simple utility library that performs native [extended attribute](https://man7.org/linux/man-pages/man7/xattr.7.html)
 operations using rustler and the [`xattr`](https://github.com/Stebalien/xattr)
 crate created by [Steven Allen](https://github.com/Stebalien).
@@ -19,8 +21,7 @@ Since I couldn't find anything that fit this criteria I figured I'd just do it m
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ex_attr` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `ex_attr` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -29,8 +30,3 @@ def deps do
   ]
 end
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/ex_attr>.
-
