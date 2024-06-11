@@ -1,5 +1,5 @@
 # ExAttr
- [![Hex.pm](https://img.shields.io/hexpm/v/ecto.svg)](https://hex.pm/packages/ex_attr) [![Documentation](https://img.shields.io/badge/documentation-gray)](https://hexdocs.pm/ex_attr)
+![Hex.pm Version](https://img.shields.io/hexpm/v/ex_attr) [![Documentation](https://img.shields.io/badge/documentation-gray)](https://hexdocs.pm/ex_attr)
 
 Simple utility library that performs native [extended attribute](https://man7.org/linux/man-pages/man7/xattr.7.html)
 operations using rustler and the [`xattr`](https://github.com/Stebalien/xattr)
