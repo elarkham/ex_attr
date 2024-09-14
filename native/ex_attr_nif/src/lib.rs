@@ -35,7 +35,7 @@ fn supported_platform() -> bool {
 
 #[rustler::nif]
 fn get_xattr(path: String, name: String) -> NifResult<Option<Vec<u8>>> {
-    match xattr::get(path, name) {
+    match xattr::get_deref(path, name) {
         Ok(Some(value)) => Ok(Some(value)),
         Ok(None) => Ok(None),
         Err(e) => match io_error_to_atom(e) {
@@ -47,7 +47,7 @@ fn get_xattr(path: String, name: String) -> NifResult<Option<Vec<u8>>> {
 
 #[rustler::nif]
 fn set_xattr(path: String, name: String, value: Binary) -> NifResult<Atom> {
-    match xattr::set(path, name, value.as_slice()) {
+    match xattr::set_deref(path, name, value.as_slice()) {
         Ok(_) => Ok(atom::ok()),
         Err(e) => match io_error_to_atom(e) {
             Ok(atom_str) => Err(Error::Atom(atom_str)),
@@ -58,7 +58,7 @@ fn set_xattr(path: String, name: String, value: Binary) -> NifResult<Atom> {
 
 #[rustler::nif]
 fn list_xattr(path: String) -> NifResult<Vec<String>> {
-    match xattr::list(path) {
+    match xattr::list_deref(path) {
         Ok(attrs) => attrs.map(|attr| {
             attr.into_string().map_err(|_| Error::Term(Box::new("Failed to convert OsString".to_string())))
         }).collect(),
@@ -71,7 +71,7 @@ fn list_xattr(path: String) -> NifResult<Vec<String>> {
 
 #[rustler::nif]
 fn remove_xattr(path: String, name: String) -> NifResult<Atom> {
-    match xattr::remove(path, name) {
+    match xattr::remove_deref(path, name) {
         Ok(_) => Ok(atom::ok()),
         Err(e) => match io_error_to_atom(e) {
             Ok(atom_str) => Err(Error::Atom(atom_str)),
